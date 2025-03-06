@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Interactive Button</title>
+    <style>
+        /* Basic styling */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background-color: #ffefd5;
+            overflow: hidden;
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        /* Styling for the thanks message */
+        .question {
+            font-size: 50px;
+            font-weight: bold;
+            color: #fff;
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            padding: 20px 40px;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            animation: bounce 2s infinite alternate;
+        }
+
+        /* Bouncing effect */
+        @keyframes bounce {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Buttons */
+        .button {
+            padding: 10px 20px;
+            font-size: 30px;
+            border-radius: 20px;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .yes-button {
+            background: linear-gradient(45deg, #4CAF50, #2e7d32);
+            color: white;
+            margin-right: 80px;
+        }
+
+        .yes-button:hover {
+            background: linear-gradient(45deg, #388e3c, #66bb6a);
+            transform: translateY(-5px);
+        }
+
+        .no-button {
+            background: linear-gradient(45deg, #f44336, #d32f2f);
+            color: white;
+            position: absolute;
+        }
+
+        .no-button:hover {
+            background: linear-gradient(45deg, #e53935, #c62828);
+            transform: translateY(-5px);
+        }
+
+        .btns {
+            margin-top: 70px;
+            text-align: center;
+            margin-left: -90px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="question-container">
+        <div class="question">Do you Love <i class="fa-solid fa-heart"></i> Me </div>
+        <div class="btns">
+            <button class="button yes-button" onclick="navigateToNextPage()">Yes</button>
+            <button class="button no-button" id="noButton">No</button>
+        </div>
+    </div>
+
+    <script>
+        const noButton = document.getElementById('noButton');
+
+        // Randomly move the 'No' button
+        noButton.addEventListener('mouseenter', () => {
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+            const randomX = Math.random() * (windowWidth - noButton.offsetWidth);
+            const randomY = Math.random() * (windowHeight - noButton.offsetHeight);
+            noButton.style.left = `${randomX}px`;
+            noButton.style.top = `${randomY}px`;
+        });
+
+        // Add animation and navigate to the next page
+        function navigateToNextPage() {
+            document.body.style.opacity = '0';
+            document.body.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+                window.location.href = 'thanks.html';
+            }, 700);
+        }
+    </script>
+
+</body>
+
+</html>
